@@ -2,7 +2,6 @@ package com.musinsa.domain.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.musinsa.global.utils.StringFormatUtils;
-import com.querydsl.core.util.StringUtils;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;

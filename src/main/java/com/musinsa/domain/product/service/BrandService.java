@@ -19,13 +19,11 @@ import com.musinsa.domain.product.dto.BrandPriceLowestAPI4Dto;
 import com.musinsa.domain.product.dto.CategoryPriceLowestAndHighestDto;
 import com.musinsa.domain.product.entity.BrandCategoryEntity;
 import com.musinsa.domain.product.entity.BrandCategoryId;
-import com.musinsa.domain.product.entity.BrandInfoEntity;
-import com.musinsa.domain.product.repository.BrandInfoRepository;
 import com.musinsa.domain.product.repository.BrandCategoryRepository;
+import com.musinsa.domain.product.repository.BrandInfoRepository;
 import com.musinsa.global.common.exception.ServiceException;
 import com.musinsa.global.utils.CategoryUtils;
 
-import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 
 /**
