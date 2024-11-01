@@ -44,6 +44,11 @@ Java SpringBoot 기반으로 제작된 상품 - 브랜드/카테고리 api
 └── test
 ``` 
 
+### 컨벤션 관련 사항.
+```text
+  check-style 네이버 적용
+```
+
 ### TEST 
 1. [swagger 바로가기](http://localhost:8080/swagger-ui/index.html)
 2. gradle
