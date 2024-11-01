@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.musinsa.domain.product.dto.BrandLowestPriceResultDto;
+import com.musinsa.domain.product.dto.LowestPriceBrandDto;
 import com.musinsa.domain.product.service.BrandService;
 import com.musinsa.global.common.response.BasicResponseDTO;
 import com.musinsa.global.constants.swagger.SwaggerConstants;
@@ -34,7 +34,7 @@ public class BrandController {
         SwaggerConstants.brand.BRAND_API_V1_VERSION + SwaggerConstants.brand.BRAND_API_V1_DESC, responses = {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description = SwaggerConstants.brand.BRAND_API_V1_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                schema = @Schema(implementation = BrandLowestPriceResultDto.class))
+                schema = @Schema(implementation = LowestPriceBrandDto.class))
         })
     })
     @GetMapping(value = SwaggerConstants.brand.BRAND_API_V1_URL)

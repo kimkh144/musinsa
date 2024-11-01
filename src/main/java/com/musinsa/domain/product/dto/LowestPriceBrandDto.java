@@ -13,7 +13,7 @@ import lombok.Builder;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BrandPriceLowestAPI2Dto {
+public class LowestPriceBrandDto {
 	@JsonProperty("최저가")
-	private BrandPriceLowestAPI3Dto lowestPrice;
+	private LowestPriceBrandCategoryDto lowestPriceBrandCategoryDto;
 }

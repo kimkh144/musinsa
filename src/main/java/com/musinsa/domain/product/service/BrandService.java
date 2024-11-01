@@ -2,7 +2,6 @@ package com.musinsa.domain.product.service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -13,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.musinsa.domain.product.dto.BrandCategoryDto;
 import com.musinsa.domain.product.dto.BrandLowestPriceDto;
 import com.musinsa.domain.product.dto.BrandLowestPriceResultDto;
-import com.musinsa.domain.product.dto.BrandPriceLowestAPI2Dto;
-import com.musinsa.domain.product.dto.BrandPriceLowestAPI3Dto;
-import com.musinsa.domain.product.dto.BrandPriceLowestAPI4Dto;
+import com.musinsa.domain.product.dto.LowestPriceBrandDto;
+import com.musinsa.domain.product.dto.LowestPriceBrandCategoryDto;
+import com.musinsa.domain.product.dto.LowestPriceCategoryDto;
 import com.musinsa.domain.product.dto.CategoryPriceLowestAndHighestDto;
 import com.musinsa.domain.product.entity.BrandCategoryEntity;
 import com.musinsa.domain.product.entity.BrandCategoryId;
@@ -42,7 +41,7 @@ public class BrandService {
         Optional<BrandCategoryEntity> brandCategoryEntity = brandCategoryRepository.findById_BrandAndId_Category(
             brandCategoryDto.getBrand(), brandCategoryDto.getCategory());
         if (brandCategoryEntity.isPresent()) {
-            throw new ServiceException(HttpStatus.BAD_REQUEST.value(), "동일한 브랜드, 카테고리 정보가 존재 합니다.");
+            throw new ServiceException(HttpStatus.BAD_REQUEST.value(), "동일 브랜드, 카테고리 정보가 존재 합니다.");
         }
 
         BrandCategoryEntity createBrandCategoryEntity = BrandCategoryEntity.builder()
@@ -79,41 +78,10 @@ public class BrandService {
         brandCategoryRepository.delete(brandCategoryEntity);
     }
 
-    /* 카테고리 최저가, 최고가 조회 */
-    public CategoryPriceLowestAndHighestDto getCategoryPriceLowestAndHighest(String categoryName) {
-        /* 유효성 검증 */
-        if (!CategoryUtils.isValidCategory(categoryName)) {
-            throw new ServiceException(HttpStatus.BAD_REQUEST.value(), "유효하지 않은 카테고리 명 입니다.");
-        }
-        return brandInfoRepository.getCategory(categoryName);
-    }
-
-    /* 전체 조회 */
-    public BrandLowestPriceResultDto getBrandInfo() {
-        List<BrandLowestPriceDto> brandLowestPriceDtos = brandInfoRepository.getBrandAll();
-        Long totalPrice = brandLowestPriceDtos.stream()
-            .mapToLong(dto -> Long.parseLong(dto.getPrice().replaceAll(",", "")))
-            .sum();
-
-        return new BrandLowestPriceResultDto(brandLowestPriceDtos, totalPrice);
-    }
-
-    /**
-     * 카테고리 별 최저 가격 브랜드와 상품 가격, 총액을 조회하는 메소드.
-     * 모든 브랜드 카테고리 데이터를 조회하여,
-     * 각 카테고리에서 최저 가격을 가진 상품을 찾고,
-     * 카테고리별 총 가격을 계산합니다.
-     * @return BrandLowestPriceResultDto - 카테고리별 최저 가격 정보 및 총액을 담고 있는 DTO 객체.
-     *         이 객체는 각 카테고리의 최저 가격 브랜드 목록과
-     *         해당 카테고리의 모든 상품 가격의 총합을 포함합니다.
-
-     * @throws NoSuchElementException - 브랜드 카테고리 데이터가 비어있는 경우, 최저 가격을 찾을 수 없어 발생할 수 있습니다.
-     * @throws Exception - 데이터베이스 접근 오류 등 예외 상황이 발생할 수 있습니다.
-     */
     public BrandLowestPriceResultDto getLowestPriceProductsByCategory() {
         List<BrandCategoryEntity> brandCategoryEntities = brandCategoryRepository.getBrandAllV2();
         Long totalPrice = brandCategoryEntities.stream()
-            .mapToLong(BrandCategoryEntity -> BrandCategoryEntity.getPrice())
+            .mapToLong(BrandCategoryEntity::getPrice)
             .sum();
 
         List<BrandLowestPriceDto> brandLowestPriceDtos = brandCategoryEntities.stream()
@@ -125,41 +93,25 @@ public class BrandService {
         return new BrandLowestPriceResultDto(brandLowestPriceDtos, totalPrice);
     }
 
-    /**
-     * 단일 브랜드로 모든 카테고리 상품을 구매할 때 최저 가격에 판매하는
-     * 브랜드와 각 카테고리의 상품 가격, 총액을 조회하는 메소드.
-     * 이 메소드는 브랜드 카테고리 데이터를 조회하여,
-     * 지정된 브랜드의 모든 카테고리 상품 중 최저 가격을 가진 상품을 찾고,
-     * 카테고리별 총 가격을 계산합니다.
-     *
-     * @return BrandPriceLowestAPI2Dto - 최저 가격 정보를 포함하는 DTO 객체.
-     *         이 객체는 브랜드 이름, 각 카테고리의 최저 가격 상품 목록,
-     *         그리고 총액을 포함합니다.
-     *
-     * @throws Exception - 데이터베이스 핸들링 오류 등 예외 사항 발생
-     */
-    public BrandPriceLowestAPI2Dto getLowestPriceProductsByBrand() {
+    public LowestPriceBrandDto getLowestPriceProductsByBrand() {
         List<BrandCategoryEntity> brandCategoryEntities = brandCategoryRepository.getBrandPriceV2();
         Long totalPrice = brandCategoryEntities.stream()
-            .mapToLong(BrandCategoryEntity -> BrandCategoryEntity.getPrice())
+            .mapToLong(BrandCategoryEntity::getPrice)
             .sum();
 
-        List<BrandPriceLowestAPI4Dto> brandLowestPriceDtos = brandCategoryEntities.stream()
-            .map(brandCategoryEntity -> new BrandPriceLowestAPI4Dto(brandCategoryEntity.getId().getCategory(),
+        List<LowestPriceCategoryDto> brandLowestPriceDtos = brandCategoryEntities.stream()
+            .map(brandCategoryEntity -> new LowestPriceCategoryDto(brandCategoryEntity.getId().getCategory(),
                 brandCategoryEntity.getPrice()))
             .sorted(Comparator.comparing(dto -> CategoryUtils.VALID_CATEGORIES.indexOf(dto.getCategory())))
             .collect(Collectors.toList());
 
-        ;
-        BrandPriceLowestAPI2Dto brandPriceLowestAPI2Dto = BrandPriceLowestAPI2Dto.builder()
-            .lowestPrice(BrandPriceLowestAPI3Dto.builder()
+        return LowestPriceBrandDto.builder()
+            .lowestPriceBrandCategoryDto(LowestPriceBrandCategoryDto.builder()
                 .brand(brandCategoryEntities.get(0).getId().getBrand())
                 .categories(brandLowestPriceDtos)
                 .totalPrice(totalPrice)
                 .build())
             .build();
-
-        return brandPriceLowestAPI2Dto;
     }
 
     /* 카테고리 최저가, 최고가 조회 */
