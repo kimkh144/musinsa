@@ -18,7 +18,7 @@ import lombok.Setter;
 public class BrandLowestPriceDto {
 	@Schema(title = "카테고리", example = "상의")
 	private String category;
-	@Schema(title = "브랜드", example = "브랜드 명")
+	@Schema(title = "브랜드", example = "A")
 	private String brand;
 	@Schema(title = "가격", example = "1,000")
 	private String price;

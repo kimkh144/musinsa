@@ -1,4 +1,4 @@
-package com.musinsa.domain.product.controller.product;
+package com.musinsa.domain.product.controller;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

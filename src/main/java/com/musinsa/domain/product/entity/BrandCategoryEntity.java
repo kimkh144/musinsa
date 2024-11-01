@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
-@Table(name = "TB_BRAND_CATEGORY")
+@Table(name = "TB_PRODUCT_BRAND_CATEGORY")
 public class BrandCategoryEntity {
 
 	@EmbeddedId

@@ -4,16 +4,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.musinsa.global.utils.StringFormatUtils;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
  * Created by kimkh on 10/30/24.
  */
 
+@Getter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BrandPriceDto {

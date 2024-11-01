@@ -1,4 +1,4 @@
-package com.musinsa.domain.product.controller.product;
+package com.musinsa.domain.product.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.musinsa.domain.product.dto.BrandCategoryDto;
-import com.musinsa.domain.product.dto.BrandInfoDto;
 import com.musinsa.domain.product.dto.LowestPriceBrandDto;
 import com.musinsa.domain.product.service.BrandCategoryService;
 import com.musinsa.global.common.response.BasicResponseDTO;
@@ -61,7 +60,7 @@ public class BrandController {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
             SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                schema = @Schema(implementation = BrandInfoDto.class))
+                schema = @Schema(implementation = BrandCategoryDto.class))
         })
     })
 
@@ -83,7 +82,7 @@ public class BrandController {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
             SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                schema = @Schema(implementation = BrandInfoDto.class))
+                schema = @Schema(implementation = BrandCategoryDto.class))
         })
     })
 
@@ -103,10 +102,7 @@ public class BrandController {
     @Operation(summary = SwaggerConstants.brand.BRAND_API_V4_DELETE_DESC, description =
         SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, responses = {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
-            SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_DELETE_DESC, content = {
-            @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                schema = @Schema(implementation = Object.class))
-        })
+            SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_DELETE_DESC)
     })
 
     @DeleteMapping(value = SwaggerConstants.brand.BRAND_API_V4_URL)

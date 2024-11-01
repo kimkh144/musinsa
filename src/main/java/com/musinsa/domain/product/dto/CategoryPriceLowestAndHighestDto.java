@@ -7,11 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 /**
  * Created by kimkh on 10/30/24.
  */
 
+@Getter
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)

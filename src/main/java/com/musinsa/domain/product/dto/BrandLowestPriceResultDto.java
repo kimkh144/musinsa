@@ -17,8 +17,9 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Schema(title = "상품 정보")
 public class BrandLowestPriceResultDto {
-	@Schema(title = "상품 정보")
+	@Schema(title = "상품", required = true)
 	private List<BrandLowestPriceDto> products;
 	@Schema(title = "총액", example = "1,000")
 	private String totalPrice;

@@ -22,7 +22,6 @@ public class SwaggerConstants {
         public static final String BRAND_API_V4_CREATE_DESC = "- 브랜드 및 상품 추가 API";
         public static final String BRAND_API_V4_UPDATE_DESC = "- 브랜드 및 상품 수정 API";
         public static final String BRAND_API_V4_DELETE_DESC = "- 브랜드 및 상품 삭제 API";
-
     }
 
     /* CATEGORY API */

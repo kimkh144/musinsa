@@ -2,6 +2,8 @@ package com.musinsa.domain.product.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +13,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class BrandCategoryDto {
 	@NotBlank(message = "브랜드 정보는 필수 입력 되어야 합니다.")

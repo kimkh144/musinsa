@@ -6,20 +6,26 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.musinsa.global.utils.StringFormatUtils;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 /**
  * Created by kimkh on 10/30/24.
  */
 
+@Getter
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LowestPriceBrandCategoryDto {
+	@Schema(title = "브랜드", required = true, example = "A")
 	@JsonProperty("브랜드")
 	private String brand;
+	@Schema(title = "카테고리", required = true, example = "상의")
 	@JsonProperty("카테고리")
 	private List<LowestPriceCategoryDto> categories;
+	@Schema(title = "총액", required = true, example = "1,000")
 	@JsonProperty("총액")
 	private String totalPrice;
 
