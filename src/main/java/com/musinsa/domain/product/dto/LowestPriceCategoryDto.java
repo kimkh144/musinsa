@@ -15,14 +15,14 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BrandPriceLowestAPI4Dto {
+public class LowestPriceCategoryDto {
 	@JsonProperty("카테고리")
 	private String category;
 	@JsonProperty("가격")
 	private String price;
 
 	@Builder
-	public BrandPriceLowestAPI4Dto(String category, Long price) {
+	public LowestPriceCategoryDto(String category, Long price) {
 		this.category = category;
 		this.price = StringFormatUtils.setPriceComma(price.toString());
 	}

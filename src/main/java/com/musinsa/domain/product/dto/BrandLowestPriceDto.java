@@ -2,8 +2,8 @@ package com.musinsa.domain.product.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.musinsa.global.utils.StringFormatUtils;
-import com.querydsl.core.util.StringUtils;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,8 +16,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BrandLowestPriceDto {
+	@Schema(title = "카테고리", example = "상의")
 	private String category;
+	@Schema(title = "브랜드", example = "브랜드 명")
 	private String brand;
+	@Schema(title = "가격", example = "1,000")
 	private String price;
 
 	public BrandLowestPriceDto(String category, String brand, Long price) {

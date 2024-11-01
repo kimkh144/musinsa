@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.musinsa.global.utils.StringFormatUtils;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,11 +18,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BrandLowestPriceResultDto {
-	private List<BrandLowestPriceDto> brand;
+	@Schema(title = "상품 정보")
+	private List<BrandLowestPriceDto> products;
+	@Schema(title = "총액", example = "1,000")
 	private String totalPrice;
 
-	public BrandLowestPriceResultDto(List<BrandLowestPriceDto> brand, Long totalPrice) {
-		this.brand = brand;
+	public BrandLowestPriceResultDto(List<BrandLowestPriceDto> products, Long totalPrice) {
+		this.products = products;
 		this.totalPrice = StringFormatUtils.setPriceComma(totalPrice.toString());
 	}
 }

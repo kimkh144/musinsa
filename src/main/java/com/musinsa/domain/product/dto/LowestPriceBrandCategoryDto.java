@@ -15,16 +15,16 @@ import lombok.Builder;
 
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BrandPriceLowestAPI3Dto {
+public class LowestPriceBrandCategoryDto {
 	@JsonProperty("브랜드")
 	private String brand;
 	@JsonProperty("카테고리")
-	private List<BrandPriceLowestAPI4Dto> categories;
+	private List<LowestPriceCategoryDto> categories;
 	@JsonProperty("총액")
 	private String totalPrice;
 
 	@Builder
-	public BrandPriceLowestAPI3Dto(String brand, List<BrandPriceLowestAPI4Dto> categories, Long totalPrice) {
+	public LowestPriceBrandCategoryDto(String brand, List<LowestPriceCategoryDto> categories, Long totalPrice) {
 		this.brand = brand;
 		this.categories = categories;
 		this.totalPrice = StringFormatUtils.setPriceComma(totalPrice.toString());
