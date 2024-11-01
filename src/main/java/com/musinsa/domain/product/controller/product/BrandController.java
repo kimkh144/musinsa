@@ -1,18 +1,10 @@
 package com.musinsa.domain.product.controller.product;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.musinsa.domain.product.dto.BrandCategoryDto;
-import com.musinsa.domain.product.dto.BrandInfoDto;
 import com.musinsa.domain.product.dto.BrandLowestPriceResultDto;
 import com.musinsa.domain.product.service.BrandService;
 import com.musinsa.global.common.response.BasicResponseDTO;
@@ -23,7 +15,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 /**
