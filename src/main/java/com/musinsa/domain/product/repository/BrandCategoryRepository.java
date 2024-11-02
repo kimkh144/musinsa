@@ -21,19 +21,19 @@ public interface BrandCategoryRepository extends JpaRepository<BrandCategoryEnti
 	BrandCategoryRepositoryCustom {
 
 	@Query(value = """
-    SELECT CATEGORY, BRAND, PRICE
-    FROM (
-        SELECT
-            T.CATEGORY,
-            T.BRAND,
-            T.PRICE,
-            ROW_NUMBER() OVER (PARTITION BY T.CATEGORY ORDER BY T.PRICE ASC, T.BRAND ASC) AS ROW_NUM
-        FROM
-            TB_BRAND_CATEGORY T
-    ) AS RANKED_TABLE
-    WHERE ROW_NUM = 1
-    ORDER BY CATEGORY
-    """, nativeQuery = true)
+		SELECT TB_PRODUCT_BRAND_CATEGORY_RANKED.CATEGORY, TB_PRODUCT_BRAND_CATEGORY_RANKED.BRAND, TB_PRODUCT_BRAND_CATEGORY_RANKED.PRICE
+		FROM (
+		    SELECT
+		        PBC.CATEGORY,
+		        PBC.BRAND,
+		        PBC.PRICE,
+		        ROW_NUMBER() OVER (PARTITION BY PBC.CATEGORY ORDER BY PBC.PRICE ASC, PBC.BRAND ASC) AS ROW_NUM
+		    FROM
+		        TB_PRODUCT_BRAND_CATEGORY PBC
+		) AS TB_PRODUCT_BRAND_CATEGORY_RANKED
+		WHERE TB_PRODUCT_BRAND_CATEGORY_RANKED.ROW_NUM = 1
+		ORDER BY TB_PRODUCT_BRAND_CATEGORY_RANKED.CATEGORY
+		""", nativeQuery = true)
 	List<BrandCategoryEntity> findLowestPriceProductsByCategory();
 
 	Optional<BrandCategoryEntity> findByIdBrandAndIdCategory(

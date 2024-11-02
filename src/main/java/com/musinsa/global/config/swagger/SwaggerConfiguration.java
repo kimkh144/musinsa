@@ -2,9 +2,10 @@ package com.musinsa.global.config.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-
+import io.swagger.v3.oas.models.info.Contact;
 
 @Configuration
 public class SwaggerConfiguration {
@@ -13,6 +14,10 @@ public class SwaggerConfiguration {
         return new OpenAPI()
             .info(new Info().title("[MUSINSA] Java(Kotlin) Backend Engineer - 과제")
                 .version("v1")
+                .contact(new Contact()
+                    .name("김규현")
+                    .email("bite111@naver.com")
+                )
                 .description("""
                         
                         [과제]

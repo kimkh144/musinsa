@@ -111,7 +111,7 @@ cd musinsa
 1. 스키마 생성 : `schema.sql` 
 2. 기초 데이터 등록: `data.sql`
 ---
-## 컨벤션.
+## 컨벤션
 ### 1. Packages
 - **Standard**: 모든 패키지 이름은 소문자로 구성하고, 단어는 마침표(`.`)로 구분.
 - **Structure**: 기본적으로 `com.[company].` 구조를 사용, 하위 패키지는 기능별로 구분.
@@ -152,6 +152,7 @@ cd musinsa
 ---
 ### TEST 방법
 1. [swagger 바로가기](http://localhost:8080/swagger-ui/index.html)
+![swagger-ui.png](src/main/resources/images/swagger-ui.png)
 2. gradle
 ```text
   gradlew test

@@ -68,7 +68,8 @@ public class BrandCategoryRepositoryCustomImpl implements BrandCategoryRepositor
                     qBrandCategoryEntity.price.as("price")
                 ))
                 .from(qBrandCategoryEntity)
-                .where(qBrandCategoryEntity.price.eq(price))
+                .where(qBrandCategoryEntity.price.eq(price).and(qBrandCategoryEntity.id.category.eq(category)) )
+                .groupBy(qBrandCategoryEntity.id.brand, qBrandCategoryEntity.id.category)
                 .orderBy(qBrandCategoryEntity.id.category.asc())
                 .fetch();
     }
