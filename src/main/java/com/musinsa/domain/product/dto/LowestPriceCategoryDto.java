@@ -18,10 +18,10 @@ import lombok.Getter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Schema(title = "카테고리 가격 정보")
 public class LowestPriceCategoryDto {
-	@Schema(title = "카테고리", required = true, example = "상의")
+	@Schema(title = "카테고리", example = "상의")
 	@JsonProperty("카테고리")
 	private String category;
-	@Schema(title = "가격", required = true, example = "1,000")
+	@Schema(title = "가격", example = "1,000")
 	@JsonProperty("가격")
 	private String price;
 

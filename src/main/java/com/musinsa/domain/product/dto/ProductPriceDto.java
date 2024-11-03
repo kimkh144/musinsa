@@ -17,11 +17,11 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Schema(title = "상품 정보")
 public class ProductPriceDto {
-	@Schema(title = "브랜드", example = "A", required = true)
+	@Schema(title = "브랜드", example = "A")
 	private String brand;
-	@Schema(title = "카테고리", example = "상의", required = true)
+	@Schema(title = "카테고리", example = "상의")
 	private String category;
-	@Schema(title = "상품 가격", example = "1,000", required = true)
+	@Schema(title = "상품 가격", example = "1,000")
 	private String price;
 
 	public ProductPriceDto(String category, String brand, Long price) {

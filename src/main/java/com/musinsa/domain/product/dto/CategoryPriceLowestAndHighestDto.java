@@ -20,13 +20,13 @@ import lombok.Getter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Schema(title = "상품 카테고리 최저, 최고가 정보")
 public class CategoryPriceLowestAndHighestDto {
-	@Schema(title = "카테고리", required = true, example = "상의")
+	@Schema(title = "카테고리", example = "상의")
 	@JsonProperty("카테고리")
 	private String category;
-	@Schema(title = "최저가 정보", required = true)
+	@Schema(title = "최저가 정보")
 	@JsonProperty("최저가")
 	private List<ProductPriceDto> lowerPrice;
-	@Schema(title = "최고가 정보", required = true)
+	@Schema(title = "최고가 정보")
 	@JsonProperty("최고가")
 	private List<ProductPriceDto> highPrice;
 }
