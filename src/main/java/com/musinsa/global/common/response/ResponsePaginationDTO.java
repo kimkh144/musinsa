@@ -19,13 +19,13 @@ public class ResponsePaginationDTO {
 	private int totalCount;
 
 	@Schema(description = "아이템수")
-	private int listSize;
+	private int currentCount;
 
 	@Schema(description = "현재 페이지")
 	private int currentPage;
 
 	@Schema(description = "마지막 페이지")
-	public int getLastPage() {
+	public int getTotalPage() {
 		if (totalCount == 0) {
 			return 1;
 		} else {

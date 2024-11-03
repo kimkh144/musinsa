@@ -16,7 +16,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Schema(title = "단일 브랜드 최저가 정보")
+@Schema(title = "브랜드 최저가 정보")
 public class LowestPriceBrandDto {
 	@Schema(title = "최저가 정보", required = true)
 	@JsonProperty("최저가")

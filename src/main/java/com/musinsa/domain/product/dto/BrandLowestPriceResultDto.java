@@ -17,14 +17,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@Schema(title = "상품 정보")
+@Schema(title = "상품 리스트 정보")
 public class BrandLowestPriceResultDto {
-	@Schema(title = "상품", required = true)
-	private List<BrandLowestPriceDto> products;
-	@Schema(title = "총액", example = "1,000")
+	@Schema(title = "상품 리스트", required = true)
+	private List<ProductPriceDto> products;
+	@Schema(title = "상품 가격 총액", required = true, example = "1,000")
 	private String totalPrice;
 
-	public BrandLowestPriceResultDto(List<BrandLowestPriceDto> products, Long totalPrice) {
+	public BrandLowestPriceResultDto(List<ProductPriceDto> products, Long totalPrice) {
 		this.products = products;
 		this.totalPrice = StringFormatUtils.setPriceComma(totalPrice.toString());
 	}

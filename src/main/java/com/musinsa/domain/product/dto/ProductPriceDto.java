@@ -15,15 +15,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BrandLowestPriceDto {
-	@Schema(title = "카테고리", example = "상의")
-	private String category;
-	@Schema(title = "브랜드", example = "A")
+@Schema(title = "상품 정보")
+public class ProductPriceDto {
+	@Schema(title = "브랜드", example = "A", required = true)
 	private String brand;
-	@Schema(title = "가격", example = "1,000")
+	@Schema(title = "카테고리", example = "상의", required = true)
+	private String category;
+	@Schema(title = "상품 가격", example = "1,000", required = true)
 	private String price;
 
-	public BrandLowestPriceDto(String category, String brand, Long price) {
+	public ProductPriceDto(String category, String brand, Long price) {
 		this.category = category;
 		this.brand = brand;
 		this.price = StringFormatUtils.setPriceComma(price.toString());

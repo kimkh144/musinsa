@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.musinsa.domain.product.dto.BrandPriceDto;
 import com.musinsa.domain.product.dto.CategoryPriceLowestAndHighestDto;
+import com.musinsa.domain.product.dto.ProductPriceDto;
 import com.musinsa.domain.product.entity.BrandCategoryEntity;
 import com.musinsa.domain.product.entity.QBrandCategoryEntity;
 import com.querydsl.core.types.Projections;
@@ -24,7 +24,7 @@ public class BrandCategoryRepositoryCustomImpl implements BrandCategoryRepositor
     private final QBrandCategoryEntity qBrandCategoryEntity = QBrandCategoryEntity.brandCategoryEntity;
 
     @Override
-    public List<BrandCategoryEntity> findLowestPriceProductsByBrand() {
+    public List<BrandCategoryEntity> findLowestPriceBrand() {
         String lowestPriceBrand = jpaQueryFactory
             .select(qBrandCategoryEntity.id.brand)
             .from(qBrandCategoryEntity)
@@ -42,34 +42,38 @@ public class BrandCategoryRepositoryCustomImpl implements BrandCategoryRepositor
                 .fetch();
     }
 
+    /*
+
+     */
     @Override
-    public CategoryPriceLowestAndHighestDto findCategoryPriceLowestAndHighest(String categoryName){
-        List<BrandPriceDto> minPrice = getBrandPrice(categoryName, false);
-        List<BrandPriceDto> maxPrice = getBrandPrice(categoryName, true);
+    public CategoryPriceLowestAndHighestDto findCategoryPriceLowestAndHighest(String category){
+        List<ProductPriceDto> minPrice = findBrandPriceByCategory(category, false);
+        List<ProductPriceDto> maxPrice = findBrandPriceByCategory(category, true);
 
         return CategoryPriceLowestAndHighestDto.builder()
-            .category(categoryName)
+            .category(category)
             .lowerPrice(minPrice)
             .highPrice(maxPrice)
             .build();
     }
 
     /* 상품 가격 정보 조회 */
-    private List<BrandPriceDto> getBrandPrice(String category, boolean isMax) {
+    private List<ProductPriceDto> findBrandPriceByCategory(String category, boolean isMax) {
+        /* 카테고리의 상품 최저, 최대 가격 조회 */
         Long price = jpaQueryFactory
             .select((isMax) ? qBrandCategoryEntity.price.max() : qBrandCategoryEntity.price.min())
             .from(qBrandCategoryEntity)
             .where(qBrandCategoryEntity.id.category.eq(category))
             .fetchOne();
 
+        /* 카테고리 최저, 최대 가격의 브랜드 정보 조회 */
         return
-            jpaQueryFactory.select(Projections.constructor(BrandPriceDto.class,
+            jpaQueryFactory.select(Projections.constructor(ProductPriceDto.class,
                     qBrandCategoryEntity.id.brand.as("brand"),
                     qBrandCategoryEntity.price.as("price")
                 ))
                 .from(qBrandCategoryEntity)
-                .where(qBrandCategoryEntity.price.eq(price).and(qBrandCategoryEntity.id.category.eq(category)) )
-                .groupBy(qBrandCategoryEntity.id.brand, qBrandCategoryEntity.id.category)
+                .where(qBrandCategoryEntity.id.category.eq(category).and(qBrandCategoryEntity.price.eq(price)))
                 .orderBy(qBrandCategoryEntity.id.category.asc())
                 .fetch();
     }

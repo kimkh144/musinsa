@@ -14,8 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
-import com.musinsa.domain.product.dto.BrandCategoryDto;
-import com.musinsa.domain.product.dto.BrandPriceDto;
+import com.musinsa.domain.product.dto.request.RequestBrandCategoryDto;
 import com.musinsa.domain.product.dto.CategoryPriceLowestAndHighestDto;
 import com.musinsa.domain.product.dto.LowestPriceBrandDto;
 import com.musinsa.domain.product.entity.BrandCategoryEntity;
@@ -42,15 +41,15 @@ public class BrandCategoryServiceTest {
     @Test
     public void testCreateBrandSuccess() {
         // Arrange
-        BrandCategoryDto brandCategoryDto =
-            BrandCategoryDto.builder()
+        RequestBrandCategoryDto requestBrandCategoryDto =
+            RequestBrandCategoryDto.builder()
                 .brand("A")
                 .category("상의")
                 .price(1000L)
                 .build();
         when(brandCategoryRepository.findByIdBrandAndIdCategory("A", "상의")).thenReturn(Optional.empty());
 
-        brandCategoryService.createBrand(brandCategoryDto);
+        brandCategoryService.createBrand(requestBrandCategoryDto);
         // Assert
         verify(brandCategoryRepository, times(1)).save(any(BrandCategoryEntity.class));
     }
@@ -59,8 +58,8 @@ public class BrandCategoryServiceTest {
     @Test
     public void testDeleteBrandSuccess() {
         // Arrange
-        BrandCategoryDto brandCategoryDto =
-            BrandCategoryDto.builder()
+        RequestBrandCategoryDto requestBrandCategoryDto =
+            RequestBrandCategoryDto.builder()
                 .brand("A")
                 .category("상의")
                 .price(1500L)
@@ -74,7 +73,7 @@ public class BrandCategoryServiceTest {
             .findByIdBrandAndIdCategory("A", "상의");
 
         // Act
-        brandCategoryService.deleteBrand(brandCategoryDto);
+        brandCategoryService.deleteBrand(requestBrandCategoryDto);
 
         // Assert
         verify(brandCategoryRepository, times(1)).delete(existingEntity);
@@ -99,7 +98,7 @@ public class BrandCategoryServiceTest {
         brandCategoryEntities.add(entity2);
 
         // 스텁 설정: 특정 브랜드의 최저 가격 상품 목록 반환
-        doReturn(brandCategoryEntities).when(brandCategoryRepository).findLowestPriceProductsByBrand();
+        doReturn(brandCategoryEntities).when(brandCategoryRepository).findLowestPriceBrand();
 
         // Act: 서비스 메서드 호출
         LowestPriceBrandDto result = brandCategoryService.getLowestPriceProductsByBrand();
@@ -113,7 +112,7 @@ public class BrandCategoryServiceTest {
         assertEquals("바지", result.getLowestPriceBrandCategoryDto().getCategories().get(1).getCategory());
         assertEquals("1,500", result.getLowestPriceBrandCategoryDto().getCategories().get(1).getPrice());
 
-        verify(brandCategoryRepository).findLowestPriceProductsByBrand(); // repository 메서드가 호출되었는지 확인
+        verify(brandCategoryRepository).findLowestPriceBrand(); // repository 메서드가 호출되었는지 확인
     }
 
     @Test

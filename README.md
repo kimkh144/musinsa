@@ -40,7 +40,7 @@ cd musinsa
 - 기본 포트는 8080이며, 브라우저에서 아래 URL을 입력
   - swagger-ui : http://localhost:8080/swagger-ui/index.html
   - h2-console : http://localhost:8080/h2-console
-    - h2-console 접속 정보 (메모리 방식)
+    - h2-console 접속 정보 (임베디드 메모리 방식)
       - JDBC URL: jdbc:h2:mem:/musinsa
       - User Name: sa
       - Password: musinsa
@@ -136,16 +136,43 @@ cd musinsa
 - **Column Names**: 대문자 사용, 여러 단어는 밑줄(`_`)로 구분.
   - 예시: `USER_ID`, `ORDER`, `CATEGORY`
 ---
-### 공통 RESPONSE Payload 구성
+### REST API Common Response Payload 구성
 ```text
 {
-    "meta": {},   # 페이지네이션 정보 제공
-    "data": {},   # API 응답 항목 제공
-    "error": {    # API 응답 에러 발생 시 error 정보 제공
-        "code": 400,    # http 응답 코드
+    "meta": {     # 메타 항목. 페이지네이션 정보 제공
+        "totalCount": 100,      # 전체 아이템 수
+        "currentCount": 10,     # 현재 아이템 수
+        "currentPage": 1,       # 현재 페이지
+        "totalPage": 10,        # 전체 페이지
+    },   
+    "data": {     # 데이터 항목. API 응답 제공
+        "카테고리": "스니커즈",
+        "최저가": [
+             {
+                 "브랜드": "A",
+                 "가격": "9,000"
+             },
+             {
+                 "브랜드": "G",
+                 "가격": "9,000"
+             }
+         ],
+         "최고가": [
+             {
+                  "브랜드": "E",
+                  "가격": "9,900"
+             },
+             {
+                  "브랜드": "H",
+                  "가격": "9,900"
+             }
+          ]
+    },   
+    "error": {    # 에러 항목. API 응답 에러 발생 시 error 정보 제공
+        "code": 400,            # http 응답 코드
         "errorCode": "string",  # error code (커스텀)
-        "message": "string",    # error 메시지 
-        "validation": "string"  # validation 오류 발생 사유 (@Valid 오류건)
+        "message": "string",    # error 메시지 (커스텀) 
+        "validation": "string"  # validation 오류 발생 사유 (@Valid 오류 메시지)
     }
 }
 ```

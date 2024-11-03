@@ -27,15 +27,15 @@ public class SwaggerConstants {
     /* CATEGORY API */
     public static class category {
         public static final String CATEGORY_TAG = "상품 - 카테고리";
-        public static final String CATEGORY_V1 = "/v1/products/category";
+        public static final String CATEGORY_V1 = "v1/products/categories";
 
         /* 구현 1) - 테고리 별 최저가격 브랜드와 상품 가격, 총액을 조회하는 API */
-        public static final String CATEGORY_API_V1_URL = "";
+        public static final String CATEGORY_API_V1_URL = "/lowest-price/brands";
         public static final String CATEGORY_API_V1_VERSION = "구현 1)";
         public static final String CATEGORY_API_V1_DESC = "- 카테고리 별 최저가격 브랜드와 상품 가격, 총액을 조회하는 API";
 
         /*구현 3) - 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 가격을 조회하는 API*/
-        public static final String CATEGORY_API_V3_URL = "{category}";
+        public static final String CATEGORY_API_V3_URL = "{category}/price-range/brands";
         public static final String CATEGORY_API_V3_VERSION = "구현 3)";
         public static final String CATEGORY_API_V3_DESC = "- 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 가격을 조회하는 API";
     }

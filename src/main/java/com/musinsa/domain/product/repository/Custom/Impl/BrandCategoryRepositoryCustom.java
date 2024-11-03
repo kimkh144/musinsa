@@ -13,6 +13,6 @@ import com.musinsa.domain.product.entity.BrandCategoryEntity;
 @Repository
 public interface BrandCategoryRepositoryCustom {
 
-	List<BrandCategoryEntity> findLowestPriceProductsByBrand();
+	List<BrandCategoryEntity> findLowestPriceBrand();
 	CategoryPriceLowestAndHighestDto findCategoryPriceLowestAndHighest(String categoryName);
 }

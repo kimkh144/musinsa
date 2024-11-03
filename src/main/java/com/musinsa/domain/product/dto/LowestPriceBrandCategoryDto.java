@@ -18,6 +18,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Schema(title = "상품 최저가 정보")
 public class LowestPriceBrandCategoryDto {
 	@Schema(title = "브랜드", required = true, example = "A")
 	@JsonProperty("브랜드")

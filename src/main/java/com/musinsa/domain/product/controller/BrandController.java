@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.musinsa.domain.product.dto.BrandCategoryDto;
+import com.musinsa.domain.product.dto.request.RequestBrandCategoryDto;
 import com.musinsa.domain.product.dto.LowestPriceBrandDto;
 import com.musinsa.domain.product.service.BrandCategoryService;
 import com.musinsa.global.common.response.BasicResponseDTO;
@@ -60,17 +60,17 @@ public class BrandController {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
             SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                schema = @Schema(implementation = BrandCategoryDto.class))
+                schema = @Schema(implementation = RequestBrandCategoryDto.class))
         })
     })
 
     @PostMapping(value =  SwaggerConstants.brand.BRAND_API_V4_URL)
     public ResponseEntity<BasicResponseDTO> createCategory(
-        @RequestBody @Valid BrandCategoryDto brandCategoryDto
+        @RequestBody @Valid RequestBrandCategoryDto requestBrandCategoryDto
     ) {
-        brandCategoryService.createBrand(brandCategoryDto);
+        brandCategoryService.createBrand(requestBrandCategoryDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(BasicResponseDTO.builder()
-            .data(brandCategoryDto)
+            .data(requestBrandCategoryDto)
             .build());
     }
 
@@ -82,17 +82,17 @@ public class BrandController {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
             SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                schema = @Schema(implementation = BrandCategoryDto.class))
+                schema = @Schema(implementation = RequestBrandCategoryDto.class))
         })
     })
 
     @PutMapping(value = SwaggerConstants.brand.BRAND_API_V4_URL)
     public Object updateCategory(
-        @RequestBody @Valid BrandCategoryDto brandCategoryDto
+        @RequestBody @Valid RequestBrandCategoryDto requestBrandCategoryDto
     ) {
-        brandCategoryService.updateBrand(brandCategoryDto);
+        brandCategoryService.updateBrand(requestBrandCategoryDto);
         return BasicResponseDTO.builder()
-            .data(brandCategoryDto)
+            .data(requestBrandCategoryDto)
             .build();
     }
 
@@ -107,9 +107,9 @@ public class BrandController {
 
     @DeleteMapping(value = SwaggerConstants.brand.BRAND_API_V4_URL)
     public ResponseEntity<BasicResponseDTO> deleteCategory(
-        @RequestBody @Valid BrandCategoryDto brandCategoryDto
+        @RequestBody @Valid RequestBrandCategoryDto requestBrandCategoryDto
     ) {
-        brandCategoryService.deleteBrand(brandCategoryDto);
+        brandCategoryService.deleteBrand(requestBrandCategoryDto);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
