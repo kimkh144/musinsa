@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.musinsa.domain.product.dto.BrandLowestPriceDto;
 import com.musinsa.domain.product.dto.CategoryPriceLowestAndHighestDto;
 import com.musinsa.domain.product.entity.BrandCategoryEntity;
 
@@ -14,5 +13,6 @@ import com.musinsa.domain.product.entity.BrandCategoryEntity;
 @Repository
 public interface BrandCategoryRepositoryCustom {
 
-	List<BrandCategoryEntity> getBrandPriceV2();
+	List<BrandCategoryEntity> findLowestPriceBrand();
+	CategoryPriceLowestAndHighestDto findCategoryPriceLowestAndHighest(String categoryName);
 }

@@ -2,7 +2,7 @@ package com.musinsa.domain.product.dto;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.musinsa.global.utils.StringFormatUtils;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,14 +16,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(title = "상품 리스트 정보")
 public class BrandLowestPriceResultDto {
-	@Schema(title = "상품 정보")
-	private List<BrandLowestPriceDto> products;
-	@Schema(title = "총액", example = "1,000")
+	@Schema(title = "상품 리스트")
+	private List<ProductPriceDto> products;
+	@Schema(title = "상품 가격 총액", example = "1,000")
 	private String totalPrice;
 
-	public BrandLowestPriceResultDto(List<BrandLowestPriceDto> products, Long totalPrice) {
+	public BrandLowestPriceResultDto(List<ProductPriceDto> products, Long totalPrice) {
 		this.products = products;
 		this.totalPrice = StringFormatUtils.setPriceComma(totalPrice.toString());
 	}

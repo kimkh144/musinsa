@@ -1,9 +1,10 @@
 package com.musinsa.domain.product.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.musinsa.global.utils.StringFormatUtils;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,10 +15,13 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(title = "카테고리 가격 정보")
 public class LowestPriceCategoryDto {
+	@Schema(title = "카테고리", example = "상의")
 	@JsonProperty("카테고리")
 	private String category;
+	@Schema(title = "가격", example = "1,000")
 	@JsonProperty("가격")
 	private String price;
 

@@ -11,7 +11,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     defer-datasource-initialization: true
 
   sql:
@@ -20,9 +20,9 @@ spring:
 
   datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:file:~/testdb
+    url: jdbc:h2:mem:/musinsa  #메모리기반으로 사용
     username: sa
-    password:
+    password: musinsa
 
 springdoc:
   swagger-ui:
