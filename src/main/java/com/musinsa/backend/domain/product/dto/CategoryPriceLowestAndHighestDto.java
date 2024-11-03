@@ -20,6 +20,7 @@ import lombok.Getter;
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(title = "카테고리 가격 정보")
 public class CategoryPriceLowestAndHighestDto {
 	@Schema(title = "카테고리", example = "상의")
 	@JsonProperty("카테고리")
