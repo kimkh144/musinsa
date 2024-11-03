@@ -132,7 +132,7 @@
          private String totalPrice;
      }
      ```
-     ```json
+     ```text
      # 요청 Curl
      curl -X 'GET' \
      'http://localhost:8080/v1/products/brands/lowest-price' -H 'accept: application/json'
@@ -203,7 +203,7 @@
     - 정상 응답 : `HTTP/1.1 200 OK` 
     - 정상 응답의 경우 data 항목으로 제공 됨.
     - 과제 응답값 준수 하기 위해 Dto 의 각 필드 명을 `@JsonProperty` 를 이용하여 한글 매핑함.
-    ```json
+    ```text
     # 요청 Curl
     curl -X 'GET' \
     'http://localhost:8080/v1/products/categories/%EC%83%81%EC%9D%98/price-range/brands' -H 'accept: application/json'
@@ -321,37 +321,38 @@ cd musinsa
 ## 프로젝트 패키지 구조
 - 도메인 구조로 설계
 ```text
-└── src
-├── main
-│   ├── java
-│   │   └── com
-│   │       └── musinsa
-│   │           ├── domain
-│   │           │   └── product
-│   │           │       ├── controller
-│   │           │       │   └── brand
-│   │           │       ├── dto
-│   │           │       ├── entity
-│   │           │       ├── repository
-│   │           │       │   └── Custom
-│   │           │       │       └── Impl
-│   │           │       └── service
-│   │           └── global
-│   │               ├── common
-│   │               │   ├── exception
-│   │               │   └── response
-│   │               ├── config
-│   │               │   ├── jpa
-│   │               │   │   └── queryDsl
-│   │               │   ├── security
-│   │               │   └── swagger
-│   │               ├── enum
-│   │               │   └── error
-│   │               └── utils
-│   └── resources
-│       ├── static
-│       └── templates
-└── test
+├── java
+│   └── com
+│       └── musinsa
+│           └── backend
+│               ├── MusinsaApplication.java   
+│               ├── domain
+│               │   └── product                          # 상품 도메인 (product)
+│               │       ├── controller
+│               │       │   ├── BrandController.java     # 브랜드 기능 제공 
+│               │       │   └── CategoryController.java  # 카테고리 기능 제공
+│               │       ├── dto                          # product 도메인의 dto 객체 (응답)
+│               │       │   └── request                  # product 도메인의 dto 객체 (요청)
+│               │       ├── entity
+│               │       │   ├── BrandCategoryEntity.java # JPA 엔티티 
+│               │       │   └── BrandCategoryId.java     # 복합 키 관리
+│               │       ├── repository                   # repository 관리
+│               │       │   └── Impl                     # 커스텀 repository 구현체 관리
+│               │       └── service                      # 서비스 layer (비즈니스 기능)
+│               └── global                               # 전역 설정 기능     
+│                   ├── common                           
+│                   │   ├── exception                    # 커스텀 exception 처리 관리
+│                   │   │   └── ServiceException.java
+│                   │   └── response                     # common response model 관리 
+│                   ├── config                           # spring 설정 클래스
+│                   ├── constants                        # 상수 관리
+│                   └── utils                            # 유틸 관리
+└── resources
+    ├── application.yml                                  # spring boot 설정 파일 
+    ├── data.sql                                         # H2 Database DML (기초 데이터)
+    ├── schema.sql                                       # H2 Database DDL (스키마)
+
+
 ```
 ---
 ## Database
