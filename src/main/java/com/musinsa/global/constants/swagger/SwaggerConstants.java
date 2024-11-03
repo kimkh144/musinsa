@@ -4,15 +4,26 @@ package com.musinsa.global.constants.swagger;
  * Created by kimkh on 2024. 11. 1..
  */
 public class SwaggerConstants {
+
+	public static final String PREVENT_MESSAGE = "Utility class cannot be instantiated";
+
+	/* Prevent instantiation */
+	private SwaggerConstants() {
+		throw new UnsupportedOperationException(PREVENT_MESSAGE);
+	}
+
     public static final String HTTP_STATUS_OK = "200";
 
     /* BRAND API */
-    public static class brand {
+    public static class Brand {
+		private Brand() {
+			throw new UnsupportedOperationException(PREVENT_MESSAGE);
+		}
         public static final String BRAND_TAG = "상품 - 브랜드";
         public static final String BRAND_V1 = "/v1/products/brands";
 
         /* 구현 2) - 단일 브랜드로 모든 카테고리 상품을 구매할 때 최저가격에 판매하는 브랜드와 카테고리의 상품가격, 총액을 조회하는 API */
-        public static final String BRAND_API_V1_URL = "";
+        public static final String BRAND_API_V1_URL = "lowest-price";
         public static final String BRAND_API_V1_VERSION = "구현 2)";
         public static final String BRAND_API_V1_DESC = "- 단일 브랜드로 모든 카테고리 상품을 구매할 때 최저가격에 판매하는 브랜드와 카테고리의 상품가격, 총액을 조회하는 API";
 
@@ -25,7 +36,10 @@ public class SwaggerConstants {
     }
 
     /* CATEGORY API */
-    public static class category {
+    public static class Category {
+		private Category() {
+			throw new UnsupportedOperationException(PREVENT_MESSAGE);
+		}
         public static final String CATEGORY_TAG = "상품 - 카테고리";
         public static final String CATEGORY_V1 = "v1/products/categories";
 

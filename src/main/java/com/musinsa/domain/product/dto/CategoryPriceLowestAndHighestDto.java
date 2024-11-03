@@ -26,8 +26,8 @@ public class CategoryPriceLowestAndHighestDto {
 	private String category;
 	@Schema(title = "최저가 정보")
 	@JsonProperty("최저가")
-	private List<ProductPriceDto> lowerPrice;
+	private List<ProductBrandPriceDto> lowerPrice;
 	@Schema(title = "최고가 정보")
 	@JsonProperty("최고가")
-	private List<ProductPriceDto> highPrice;
+	private List<ProductBrandPriceDto> highPrice;
 }

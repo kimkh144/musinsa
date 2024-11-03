@@ -3,7 +3,6 @@ package com.musinsa.domain.product.service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -55,26 +54,18 @@ public class BrandCategoryService {
 
     @Transactional
     public void updateBrand(RequestBrandCategoryDto requestBrandCategoryDto) {
-        /* 유효성 확인 */
-        BrandCategoryEntity brandCategoryEntity = brandCategoryRepository.findByIdBrandAndIdCategory(
-                requestBrandCategoryDto.getBrand(), requestBrandCategoryDto.getCategory())
-            .orElseThrow(() -> new ServiceException(HttpStatus.BAD_REQUEST.value(), "브랜드, 카테고리 정보가 존재하지 않습니다."));
-
+        BrandCategoryEntity brandCategoryEntity = getBrandCategory(requestBrandCategoryDto);
         BrandCategoryEntity updateBrandCategoryEntity = brandCategoryEntity.toBuilder()
             .price(requestBrandCategoryDto.getPrice())
             .build();
         brandCategoryRepository.save(updateBrandCategoryEntity);
     }
 
-    @Transactional
-    public void deleteBrand(RequestBrandCategoryDto requestBrandCategoryDto) {
-
-        BrandCategoryEntity brandCategoryEntity = brandCategoryRepository.findByIdBrandAndIdCategory(
-                requestBrandCategoryDto.getBrand(), requestBrandCategoryDto.getCategory())
-            .orElseThrow(() -> new ServiceException(HttpStatus.BAD_REQUEST.value(), "브랜드, 카테고리 정보가 존재 하지 않습니다."));
-
-        brandCategoryRepository.delete(brandCategoryEntity);
-    }
+	@Transactional
+	public void deleteBrand(RequestBrandCategoryDto requestBrandCategoryDto) {
+		BrandCategoryEntity brandCategoryEntity = getBrandCategory(requestBrandCategoryDto);
+		brandCategoryRepository.delete(brandCategoryEntity);
+	}
 
     public BrandLowestPriceResultDto getLowestPriceProductsByCategory() {
         List<BrandCategoryEntity> brandCategoryEntities = brandCategoryRepository.findLowestPriceProductsByCategory();
@@ -86,7 +77,7 @@ public class BrandCategoryService {
             .map(brandCategoryEntity -> new ProductPriceDto(brandCategoryEntity.getId().getCategory(),
                 brandCategoryEntity.getId().getBrand(), brandCategoryEntity.getPrice()))
             .sorted(Comparator.comparing(dto -> CategoryUtils.VALID_CATEGORIES.indexOf(dto.getCategory())))
-            .collect(Collectors.toList());
+            .toList();
 
         return new BrandLowestPriceResultDto(brandLowestPriceDtos, totalPrice);
     }
@@ -101,7 +92,7 @@ public class BrandCategoryService {
             .map(brandCategoryEntity -> new LowestPriceCategoryDto(brandCategoryEntity.getId().getCategory(),
                 brandCategoryEntity.getPrice()))
             .sorted(Comparator.comparing(dto -> CategoryUtils.VALID_CATEGORIES.indexOf(dto.getCategory())))
-            .collect(Collectors.toList());
+            .toList();
 
         return LowestPriceBrandDto.builder()
             .lowestPriceBrandCategoryDto(LowestPriceBrandCategoryDto.builder()
@@ -120,4 +111,10 @@ public class BrandCategoryService {
         }
         return brandCategoryRepository.findCategoryPriceLowestAndHighest(categoryName);
     }
+
+	private BrandCategoryEntity getBrandCategory(RequestBrandCategoryDto requestBrandCategoryDto) {
+		return brandCategoryRepository.findByIdBrandAndIdCategory(
+				requestBrandCategoryDto.getBrand(), requestBrandCategoryDto.getCategory())
+			.orElseThrow(() -> new ServiceException(HttpStatus.BAD_REQUEST.value(), "브랜드, 카테고리 정보가 존재하지 않습니다."));
+	}
 }
