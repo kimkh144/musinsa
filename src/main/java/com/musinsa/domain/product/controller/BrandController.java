@@ -28,8 +28,8 @@ import lombok.RequiredArgsConstructor;
 /**
  * Created by kimkh on 2024. 10. 29..
  */
-@Tag(name = SwaggerConstants.brand.BRAND_TAG)
-@RequestMapping(value = SwaggerConstants.brand.BRAND_V1)
+@Tag(name = SwaggerConstants.Brand.BRAND_TAG)
+@RequestMapping(value = SwaggerConstants.Brand.BRAND_V1)
 @RequiredArgsConstructor
 @RestController
 public class BrandController {
@@ -38,14 +38,14 @@ public class BrandController {
     /**
      * 구현 2) - 단일 브랜드로 모든 카테고리 상품을 구매할 때 최저가격에 판매하는 브랜드와 카테고리의 상품가격, 총액을 조회하는 API
      */
-    @Operation(summary = SwaggerConstants.brand.BRAND_API_V1_DESC, description =
-        SwaggerConstants.brand.BRAND_API_V1_VERSION + SwaggerConstants.brand.BRAND_API_V1_DESC, responses = {
-        @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description = SwaggerConstants.brand.BRAND_API_V1_DESC, content = {
+    @Operation(summary = SwaggerConstants.Brand.BRAND_API_V1_DESC, description =
+        SwaggerConstants.Brand.BRAND_API_V1_VERSION + SwaggerConstants.Brand.BRAND_API_V1_DESC, responses = {
+        @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description = SwaggerConstants.Brand.BRAND_API_V1_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 schema = @Schema(implementation = LowestPriceBrandDto.class))
         })
     })
-    @GetMapping(value = SwaggerConstants.brand.BRAND_API_V1_URL)
+    @GetMapping(value = SwaggerConstants.Brand.BRAND_API_V1_URL)
     public Object brands() {
         return BasicResponseDTO.builder()
             .data(brandCategoryService.getLowestPriceProductsByBrand())
@@ -55,16 +55,16 @@ public class BrandController {
     /**
      * 구현 4) 브랜드 및 상품을 추가 API
      */
-    @Operation(summary = SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, description =
-        SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, responses = {
+    @Operation(summary = SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, description =
+        SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, responses = {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
-            SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, content = {
+            SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 schema = @Schema(implementation = RequestBrandCategoryDto.class))
         })
     })
 
-    @PostMapping(value =  SwaggerConstants.brand.BRAND_API_V4_URL)
+    @PostMapping(value =  SwaggerConstants.Brand.BRAND_API_V4_URL)
     public ResponseEntity<BasicResponseDTO> createCategory(
         @RequestBody @Valid RequestBrandCategoryDto requestBrandCategoryDto
     ) {
@@ -77,16 +77,16 @@ public class BrandController {
     /**
      * 구현 4) 브랜드 및 상품을 업데이트 API
      */
-    @Operation(summary = SwaggerConstants.brand.BRAND_API_V4_UPDATE_DESC, description =
-        SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, responses = {
+    @Operation(summary = SwaggerConstants.Brand.BRAND_API_V4_UPDATE_DESC, description =
+        SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, responses = {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
-            SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, content = {
+            SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 schema = @Schema(implementation = RequestBrandCategoryDto.class))
         })
     })
 
-    @PutMapping(value = SwaggerConstants.brand.BRAND_API_V4_URL)
+    @PutMapping(value = SwaggerConstants.Brand.BRAND_API_V4_URL)
     public Object updateCategory(
         @RequestBody @Valid RequestBrandCategoryDto requestBrandCategoryDto
     ) {
@@ -99,13 +99,13 @@ public class BrandController {
     /**
      * 구현 4) 브랜드 및 상품을 삭제 API
      */
-    @Operation(summary = SwaggerConstants.brand.BRAND_API_V4_DELETE_DESC, description =
-        SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_CREATE_DESC, responses = {
+    @Operation(summary = SwaggerConstants.Brand.BRAND_API_V4_DELETE_DESC, description =
+        SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, responses = {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
-            SwaggerConstants.brand.BRAND_API_V4_VERSION + SwaggerConstants.brand.BRAND_API_V4_DELETE_DESC)
+            SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_DELETE_DESC)
     })
 
-    @DeleteMapping(value = SwaggerConstants.brand.BRAND_API_V4_URL)
+    @DeleteMapping(value = SwaggerConstants.Brand.BRAND_API_V4_URL)
     public ResponseEntity<BasicResponseDTO> deleteCategory(
         @RequestBody @Valid RequestBrandCategoryDto requestBrandCategoryDto
     ) {

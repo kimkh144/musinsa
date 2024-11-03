@@ -1,4 +1,4 @@
-package com.musinsa.domain.product.repository.Custom.Impl;
+package com.musinsa.domain.product.repository.Impl;
 
 import java.util.List;
 

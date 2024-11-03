@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.musinsa.domain.product.entity.BrandCategoryEntity;
 import com.musinsa.domain.product.entity.BrandCategoryId;
-import com.musinsa.domain.product.repository.Custom.Impl.BrandCategoryRepositoryCustom;
+import com.musinsa.domain.product.repository.Impl.BrandCategoryRepositoryCustom;
 
 import jakarta.validation.constraints.NotBlank;
 

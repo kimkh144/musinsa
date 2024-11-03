@@ -24,8 +24,8 @@ import lombok.RequiredArgsConstructor;
 /**
  * Created by kimkh on 2024. 10. 29..
  */
-@Tag(name = SwaggerConstants.category.CATEGORY_TAG)
-@RequestMapping(value = SwaggerConstants.category.CATEGORY_V1)
+@Tag(name = SwaggerConstants.Category.CATEGORY_TAG)
+@RequestMapping(value = SwaggerConstants.Category.CATEGORY_V1)
 @RequiredArgsConstructor
 @RestController
 public class CategoryController {
@@ -34,15 +34,15 @@ public class CategoryController {
     /**
      * 구현 1)- 카테고리 별 최저가격 브랜드와 상품 가격, 총액을 조회하는 API
      */
-    @Operation(summary = SwaggerConstants.category.CATEGORY_API_V1_DESC, description =
-        SwaggerConstants.category.CATEGORY_API_V1_VERSION
-            + SwaggerConstants.category.CATEGORY_API_V1_DESC, responses = {
-        @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description = SwaggerConstants.category.CATEGORY_API_V1_DESC, content = {
+    @Operation(summary = SwaggerConstants.Category.CATEGORY_API_V1_DESC, description =
+        SwaggerConstants.Category.CATEGORY_API_V1_VERSION
+            + SwaggerConstants.Category.CATEGORY_API_V1_DESC, responses = {
+        @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description = SwaggerConstants.Category.CATEGORY_API_V1_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 schema = @Schema(implementation = BrandLowestPriceResultDto.class))
         })
     })
-    @GetMapping(value = SwaggerConstants.category.CATEGORY_API_V1_URL)
+    @GetMapping(value = SwaggerConstants.Category.CATEGORY_API_V1_URL)
     public Object category() {
         return BasicResponseDTO.builder()
             .data(brandCategoryService.getLowestPriceProductsByCategory())
@@ -52,18 +52,18 @@ public class CategoryController {
     /**
      * 구현 3) - 카테고리 이름으로 최저, 최고 가격 브랜드와 상품 가격을 조회하는 API
      */
-    @Operation(summary = SwaggerConstants.category.CATEGORY_API_V3_DESC, description =
-        SwaggerConstants.category.CATEGORY_API_V3_VERSION
-            + SwaggerConstants.category.CATEGORY_API_V3_DESC, responses = {
+    @Operation(summary = SwaggerConstants.Category.CATEGORY_API_V3_DESC, description =
+        SwaggerConstants.Category.CATEGORY_API_V3_VERSION
+            + SwaggerConstants.Category.CATEGORY_API_V3_DESC, responses = {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
-            SwaggerConstants.category.CATEGORY_API_V3_VERSION
-                + SwaggerConstants.category.CATEGORY_API_V3_DESC, content = {
+            SwaggerConstants.Category.CATEGORY_API_V3_VERSION
+                + SwaggerConstants.Category.CATEGORY_API_V3_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 schema = @Schema(implementation = CategoryPriceLowestAndHighestDto.class))
         })
     })
 
-    @GetMapping(value = SwaggerConstants.category.CATEGORY_API_V3_URL)
+    @GetMapping(value = SwaggerConstants.Category.CATEGORY_API_V3_URL)
     public Object getCategory(
         @Parameter(description = "카테고리", in = ParameterIn.PATH, example = "상의")
         @PathVariable(name = "category") String category
