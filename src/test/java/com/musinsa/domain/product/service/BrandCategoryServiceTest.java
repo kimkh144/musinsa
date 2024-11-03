@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
+import com.musinsa.domain.product.dto.ProductPriceDto;
 import com.musinsa.domain.product.dto.request.RequestBrandCategoryDto;
 import com.musinsa.domain.product.dto.CategoryPriceLowestAndHighestDto;
 import com.musinsa.domain.product.dto.LowestPriceBrandDto;
@@ -122,8 +123,8 @@ public class BrandCategoryServiceTest {
         CategoryPriceLowestAndHighestDto expectedDto =
             CategoryPriceLowestAndHighestDto.builder()
                 .category(categoryName)
-                .lowerPrice(List.of(BrandPriceDto.builder().brand("A").price("100").build()))
-                .highPrice(List.of(BrandPriceDto.builder().brand("B").price("300").build()))
+                .lowerPrice(List.of(ProductPriceDto.builder().brand("A").price(100L).build()))
+                .highPrice(List.of(ProductPriceDto.builder().brand("B").price(300L).build()))
                 .build();
 
 

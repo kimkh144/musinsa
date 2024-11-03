@@ -1,9 +1,10 @@
 package com.musinsa.domain.product.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.musinsa.global.utils.StringFormatUtils;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(title = "상품 정보")
 public class ProductPriceDto {
 	@Schema(title = "브랜드", example = "A")
@@ -24,8 +25,14 @@ public class ProductPriceDto {
 	@Schema(title = "상품 가격", example = "1,000")
 	private String price;
 
+	@Builder
 	public ProductPriceDto(String category, String brand, Long price) {
 		this.category = category;
+		this.brand = brand;
+		this.price = StringFormatUtils.setPriceComma(price.toString());
+	}
+	@Builder
+	public ProductPriceDto(String brand, Long price) {
 		this.brand = brand;
 		this.price = StringFormatUtils.setPriceComma(price.toString());
 	}

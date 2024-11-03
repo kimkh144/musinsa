@@ -1,6 +1,6 @@
 package com.musinsa.domain.product.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.musinsa.global.utils.StringFormatUtils;
 
@@ -15,7 +15,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(title = "카테고리 가격 정보")
 public class LowestPriceCategoryDto {
 	@Schema(title = "카테고리", example = "상의")

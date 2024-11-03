@@ -2,7 +2,7 @@ package com.musinsa.domain.product.dto;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.musinsa.global.utils.StringFormatUtils;
 
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Schema(title = "상품 리스트 정보")
 public class BrandLowestPriceResultDto {
 	@Schema(title = "상품 리스트")
