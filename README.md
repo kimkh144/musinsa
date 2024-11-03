@@ -46,7 +46,7 @@
   - 요청 및 응답
     - 정상 응답 : `HTTP/1.1 200 OK` 
     - 정상 응답의 경우 data 항목으로 제공 됨.
-    ```json
+    ```text
     # 요청 Curl
     curl -X 'GET' \
     'http://localhost:8080/v1/products/categories/lowest-price/brands' -H 'accept: application/json'
@@ -255,7 +255,7 @@
       - 브랜드 및 상품 추가 응답 코드 : `HTTP/1.1 201 Created`
       - 브랜드 및 상품 삭제 응답 코드 : `HTTP/1.1 204 No Content`, Body Payload 미 제공
       - 그 외 정상 응답 : `HTTP/1.1 200 OK`
-      ```json 
+      ```text 
       # 요청 Curl
       curl -X '{POST}|{PUT}|{DELETE}' \
       'http://localhost:8080/v1/products/brands' \
