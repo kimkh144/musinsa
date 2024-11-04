@@ -473,7 +473,6 @@ cd musinsa
 ---  
 ## Unit Test
 - Swagger : [swagger 바로가기](http://localhost:8080/swagger-ui/index.html)
-![swagger-ui.png](src/main/resources/images/swagger-ui.png)
 - JUnit
 ```bash
   ./gradlew test
