@@ -8,7 +8,7 @@
 - `main` : 운영 환경 product 배포 브랜치.
 - `develop` : 다음 배포 버전의 최신 개발 상태 유지. 기능 추가시 해당 브랜치 에서 `feature` 브랜치 생성.
 - `feature` : 신규 기능 개발 브랜치 PR 과정 후 `develop` 브랜치로 squash 병합.
-- `release` : 배포전 버그 수정, 점검, QA 완료 후 `main` 브랜치 병합.
+- `release` : `develop` 브랜치에서 생성. 배포 전 버그 수정, 점검, QA 완료 후 `main` 브랜치 병합.
 - `hotfix` : main 브랜치의 긴급 수정, 완료 후 `main`, `develop` 브랜치에 병합.
 
 ---
