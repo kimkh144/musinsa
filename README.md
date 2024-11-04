@@ -1,6 +1,17 @@
 # Back-end 과제
-이 프로젝트는 Spring Boot(3.3.5) 와 H2 Database를 사용하여 
-무신사 과제에서 요구하는 기능을 Application 입니다. 
+이 프로젝트는 `Spring Boot(3.3.5)` 와 `H2 Database`를 사용하여 
+무신사 과제에서 요구하는 기능을 구현한 `Application` 입니다. 
+---
+
+## 브랜치 전략
+### Gitflow 전락 사용
+- `main` : 운영 환경 product 배포 브랜치.
+- `develop` : 다음 배포 버전의 최신 개발 상태 유지. 기능 추가시 해당 브랜치 에서 `feature` 브랜치 생성.
+- `feature` : 신규 기능 개발 브랜치 PR 과정 후 `develop` 브랜치로 squash 병합.
+- `release` : 배포전 버그 수정, 점검, QA 완료 후 `main` 브랜치 병합.
+- `hotfix` : main 브랜치의 긴급 수정, 완료 후 `main`, `develop` 브랜치에 병합.
+
+---
 
 ## 구현 기능
 - **구현 1)** [카테고리 별 최저가격 브랜드와 상품 가격, 총액을 조회하는 API](http://localhost:8080/swagger-ui/index.html#/%EC%83%81%ED%92%88%20-%20%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC/category)
