@@ -14,14 +14,14 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 
-import com.musinsa.backend.global.common.exception.ServiceException;
-import com.musinsa.backend.domain.product.dto.ProductPriceDto;
-import com.musinsa.backend.domain.product.dto.request.RequestBrandCategoryDto;
 import com.musinsa.backend.domain.product.dto.CategoryPriceLowestAndHighestDto;
 import com.musinsa.backend.domain.product.dto.LowestPriceBrandDto;
+import com.musinsa.backend.domain.product.dto.ProductBrandPriceDto;
+import com.musinsa.backend.domain.product.dto.request.RequestBrandCategoryDto;
 import com.musinsa.backend.domain.product.entity.BrandCategoryEntity;
 import com.musinsa.backend.domain.product.entity.BrandCategoryId;
 import com.musinsa.backend.domain.product.repository.BrandCategoryRepository;
+import com.musinsa.backend.global.common.exception.ServiceException;
 
 /**
  * Created by kimkh on 2024. 11. 1..
@@ -123,8 +123,8 @@ public class BrandCategoryServiceTest {
         CategoryPriceLowestAndHighestDto expectedDto =
             CategoryPriceLowestAndHighestDto.builder()
                 .category(categoryName)
-                .lowerPrice(List.of(ProductPriceDto.builder().brand("A").price(100L).build()))
-                .highPrice(List.of(ProductPriceDto.builder().brand("B").price(300L).build()))
+                .lowerPrice(List.of(ProductBrandPriceDto.builder().brand("A").price(100L).build()))
+                .highPrice(List.of(ProductBrandPriceDto.builder().brand("B").price(300L).build()))
                 .build();
 
 

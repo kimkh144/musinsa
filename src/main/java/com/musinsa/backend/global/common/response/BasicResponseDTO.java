@@ -1,7 +1,7 @@
 package com.musinsa.backend.global.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.musinsa.backend.global.ErrorCode;
+import com.musinsa.backend.global.enums.ErrorCode;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

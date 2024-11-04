@@ -340,6 +340,7 @@ cd musinsa
 │               │       │   └── Impl                     # 커스텀 repository 구현체 관리
 │               │       └── service                      # 서비스 layer (비즈니스 기능)
 │               └── global                               # 전역 설정 기능     
+│                   ├── enums                            # 공통 enum class 관리 (ex : error-code)
 │                   ├── common                           
 │                   │   ├── exception                    # 커스텀 exception 처리 관리
 │                   │   │   └── ServiceException.java

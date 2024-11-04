@@ -78,9 +78,9 @@ public class BrandController {
      * 구현 4) 브랜드 및 상품을 업데이트 API
      */
     @Operation(summary = SwaggerConstants.Brand.BRAND_API_V4_UPDATE_DESC, description =
-        SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, responses = {
+        SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_UPDATE_DESC, responses = {
         @ApiResponse(responseCode = SwaggerConstants.HTTP_STATUS_OK, description =
-            SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_CREATE_DESC, content = {
+            SwaggerConstants.Brand.BRAND_API_V4_VERSION + SwaggerConstants.Brand.BRAND_API_V4_UPDATE_DESC, content = {
             @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
                 schema = @Schema(implementation = RequestBrandCategoryDto.class))
         })
