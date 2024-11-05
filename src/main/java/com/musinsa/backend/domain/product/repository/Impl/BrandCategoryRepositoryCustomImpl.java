@@ -25,14 +25,15 @@ public class BrandCategoryRepositoryCustomImpl implements BrandCategoryRepositor
 
     @Override
     public List<BrandCategoryEntity> findLowestPriceBrand() {
+        /* 단일 브랜드 상품의 카테고리 총합 최소가 브랜드 조회 */
         String lowestPriceBrand = jpaQueryFactory
             .select(qBrandCategoryEntity.id.brand)
             .from(qBrandCategoryEntity)
             .groupBy(qBrandCategoryEntity.id.brand)
             .orderBy(qBrandCategoryEntity.price.sum().asc())
-            .limit(1)
-            .fetchOne();
+            .fetchFirst();
 
+        /* 단일 브랜드 카테고리, 상품가 조회 */
         return
             jpaQueryFactory.select(
                     qBrandCategoryEntity
